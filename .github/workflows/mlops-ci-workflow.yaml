@@ -49,13 +49,7 @@ jobs:
       - name: Train the Model
         run: |
           python src/models/train_model.py \
-            --config configs/model_config.yaml \
-            --data data/processed/featured_house_data.csv \
-            --models-dir models \
-            --mlflow-tracking-uri http://localhost:5555  
-
-      - name: Cleaning up MLflow
-        run: |
-          docker stop mlflow-server 
-          docker rm mlflow-server
-          docker rmi ghcr.io/mlflow/mlflow:latest
+            --config src/models/config.yaml \
+            --data data/processed/feature_engineered_data.csv \
+            --models data/models \
+            --mlflow-tracking-uri http://localhost:5000 
